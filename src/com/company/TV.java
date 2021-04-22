@@ -6,7 +6,7 @@ public class TV {
     protected final String[] availableShows = {"Moda na sukces", "Sprawa dla reportera", "Dlaczego ja", "Pamiętniki z wakacji"};
     protected final String[] availableChannels = {"TVP1", "POLSAT", "TVP2", "TVN"};
 
-    private final int minimumRandomInt = 1;
+    private final int minimumRandomInt = 0;
     private final String label;
     private static int iD = 0;
 
@@ -46,11 +46,11 @@ public class TV {
     }
 
     protected String getRandomShow(){
-        return availableShows[returnRandomIntInRange(availableShows.length, minimumRandomInt)];
+        return availableShows[returnRandomIntInRange(availableShows.length - 1, minimumRandomInt)];
     }
 
     protected String getRandomChannel(){
-        return availableChannels[returnRandomIntInRange(availableChannels.length, minimumRandomInt)];
+        return availableChannels[returnRandomIntInRange(availableChannels.length - 1, minimumRandomInt)];
     }
 
     public boolean setRandomParameters() {

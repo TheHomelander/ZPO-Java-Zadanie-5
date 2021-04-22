@@ -61,11 +61,11 @@ public class Guest {
     }
 
     protected String getRandomName(){
-        return nameAvailable[returnRandomIntInRange(nameAvailable.length, minimumRandomInt)];
+        return nameAvailable[returnRandomIntInRange(nameAvailable.length - 1, minimumRandomInt)];
     }
 
     protected String getRandomSurname(){
-        return surnameAvailable[returnRandomIntInRange(surnameAvailable.length, minimumRandomInt)];
+        return surnameAvailable[returnRandomIntInRange(surnameAvailable.length - 1, minimumRandomInt)];
     }
 
     public void randomizeGuest() {

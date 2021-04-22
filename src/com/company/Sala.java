@@ -21,6 +21,7 @@ public class Sala {
 
 
 
+
     protected enum TypSali{
         VEGETARIAN, CARNIVOROUS
     }
@@ -76,6 +77,26 @@ public class Sala {
 
     protected String getSalaID() {
         return salaID;
+    }
+
+
+    public boolean assignToRandomTable(Guest tg) {
+        boolean findTableFlag = true;
+        final int minRoll = 0;
+        final int maxRoll = tables.size() - 1;
+        int rolledTableIndex;
+        Stol ts;
+        while(findTableFlag){
+            rolledTableIndex = returnRandomIntInRange(maxRoll, minRoll);
+            ts = tables.get(rolledTableIndex);
+
+            if( ts.takenPlaces < ts.maxPlaces ){
+                ts.addGuest(tg);
+                System.out.println("TABLE: " + rolledTableIndex + " TAKEN: " + ts.takenPlaces + " MAX: " + ts.maxPlaces);
+                return true;
+            }
+        }
+        return false;
     }
 
 

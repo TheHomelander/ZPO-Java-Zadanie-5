@@ -6,8 +6,9 @@ import java.util.List;
 public class Restauracja {
     private List<Sala> sale = new ArrayList<>();
     private String name;
+    private int currentGuests = 0;
 
-    private final int maxAvailableSeats = 40;
+    private final int maxAvailableSeats = 30;
     private final int success = 1;
     private final int failure = 0;
 
@@ -74,7 +75,7 @@ public class Restauracja {
 
             final int guestDailyMax = 50;
             final int guestDailyMin = 10;
-            final int todaysGuests = returnRandomIntInRange(guestDailyMax, guestDailyMin);
+            final int numberOfTodaysGuests = returnRandomIntInRange(guestDailyMax, guestDailyMin);
 
             final int maxNumberOfTablesRoom = 6;
             final int minNumberOfTablesRoom = 3;
@@ -82,14 +83,18 @@ public class Restauracja {
             final int numberOfTablesRoomTwo = returnRandomIntInRange(maxNumberOfTablesRoom,minNumberOfTablesRoom);
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
+            System.out.println("INITIATEROOMS FINISED");
             initiateTables();
-            assignGuestsToRandomTables(todaysGuests);
+            System.out.println("INITIATE TABLES FINISHED");
+            assignGuestsToRandomTables(numberOfTodaysGuests);
+
+            System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
 
 
 
 
         }catch (Exception e){
-            System.out.println("Error occured while initiating the restaurant");
+            System.out.println("Error occured while initiating the restaurant" + e);
         }
 
 
@@ -98,10 +103,20 @@ public class Restauracja {
     }
 
     private void assignGuestsToRandomTables(int gn) {
+        int randomizerMin = 0;
+        int randomizerMax = sale.size() - 1;
         for ( int i = 0 ; i < gn ; i++) {
-            Guest tg = new Guest("", "", false);
-            tg.randomizeGuest();
-            // note for me, assign Guest tg to a random Room then table then chair;
+            if( currentGuests < maxAvailableSeats){
+                Guest tg = new Guest("", "", false);
+                tg.randomizeGuest();
+                int tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
+                System.out.println("INDEX: " + tableIndexToAssign);
+                if(sale.get(tableIndexToAssign).assignToRandomTable(tg)){
+                    currentGuests = currentGuests + 1;
+                }else
+                    break;
+            }else
+                break;
         }
     }
 
@@ -126,6 +141,7 @@ public class Restauracja {
             ttv.setRandomParameters();
             ts.setMyTV(ttv);
         }
+
 
     }
 

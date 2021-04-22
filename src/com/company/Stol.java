@@ -2,10 +2,11 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Stol {
 
-    private String tableLabel;
+    protected String tableLabel;
     private List<Krzeslo> chairs = new ArrayList<>();
     private static int iD = 0;
     protected int maxPlaces;
@@ -16,6 +17,7 @@ public class Stol {
         tableLabel = "TABLE" + iD;
         iD = iD + 1;
         this.maxPlaces = maxPLaces;
+        addNewChairs();
     }
 
     protected boolean addNewChairs() {
@@ -37,4 +39,11 @@ public class Stol {
                 "Taken Seats: " + takenPlaces + "\n";
     }
 
+    public void addGuest(Guest tg) {
+        for(Krzeslo tk : chairs){
+            if(tk == null){
+                tk.sittingGuest = tg;
+            }
+        }
+    }
 }
