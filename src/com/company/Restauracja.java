@@ -7,7 +7,7 @@ public class Restauracja {
     private List<Sala> sale = new ArrayList<>();
     private String name;
 
-    private int maxAvailableSeats = 40;
+    private final int maxAvailableSeats = 40;
     private final int success = 1;
     private final int failure = 0;
 
@@ -83,6 +83,7 @@ public class Restauracja {
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
             initiateTables();
+            assignGuestsToRandomTables(todaysGuests);
 
 
 
@@ -96,14 +97,17 @@ public class Restauracja {
         return failure;
     }
 
+    private void assignGuestsToRandomTables(int gn) {
+        for ( int i = 0 ; i < gn ; i++) {
+            Guest tg = new Guest("", "", false);
+            tg.randomizeGuest();
+            // note for me, assign Guest tg to a random Room then table then chair;
+        }
+    }
+
     private void initiateTables() {
         for(Sala tempSala : sale){
             tempSala.makeTables();
-            for(Stol xd : tempSala.getTables()){
-                System.out.println(xd.printAvailableSeats());
-
-            }
-            System.out.println("END");
         }
     }
 
@@ -116,6 +120,11 @@ public class Restauracja {
         }else{
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomTwoCapacity, numberOfTablesRoomTwo));
+        }
+        for(Sala ts : sale){
+            TV ttv = new TV(" ", " ");
+            ttv.setRandomParameters();
+            ts.setMyTV(ttv);
         }
 
     }

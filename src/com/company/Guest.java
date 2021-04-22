@@ -68,4 +68,9 @@ public class Guest {
         return surnameAvailable[returnRandomIntInRange(surnameAvailable.length, minimumRandomInt)];
     }
 
+    public void randomizeGuest() {
+        name = getRandomName();
+        surname = getRandomSurname();
+        isVegetarian = (returnRandomIntInRange(success,failure) == success) ;
+    }
 }

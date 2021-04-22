@@ -53,4 +53,10 @@ public class TV {
         return availableChannels[returnRandomIntInRange(availableChannels.length, minimumRandomInt)];
     }
 
+    public boolean setRandomParameters() {
+        channelName = getRandomChannel();
+        showPlaying = getRandomShow();
+        if( channelName != null && showPlaying != null)return true;
+        return false;
+    }
 }

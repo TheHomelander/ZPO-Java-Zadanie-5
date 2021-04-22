@@ -35,7 +35,6 @@ public class Sala {
         this.seatsNeeded = seatsNeeded;
         System.out.println(this.seatsNeeded);
         if( typSali == TypSali.VEGETARIAN) snookerTable = new Snooker();
-        myTV = new TV("A", "B" );
 
     }
 
