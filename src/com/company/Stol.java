@@ -39,11 +39,13 @@ public class Stol {
                 "Taken Seats: " + takenPlaces + "\n";
     }
 
-    public void addGuest(Guest tg) {
+    public boolean addGuest(Guest tg) {
         for(Krzeslo tk : chairs){
-            if(tk == null){
+            if(tk.sittingGuest == null){
                 tk.sittingGuest = tg;
+                return true;
             }
         }
+        return false;
     }
 }

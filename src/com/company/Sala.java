@@ -91,9 +91,12 @@ public class Sala {
             ts = tables.get(rolledTableIndex);
 
             if( ts.takenPlaces < ts.maxPlaces ){
-                ts.addGuest(tg);
-                System.out.println("TABLE: " + rolledTableIndex + " TAKEN: " + ts.takenPlaces + " MAX: " + ts.maxPlaces);
-                return true;
+                if(ts.addGuest(tg)) {
+                    ts.takenPlaces = ts.takenPlaces + 1;
+                    currentNumberOfGuests = currentNumberOfGuests + 1;
+                    System.out.println("TABLE: " + rolledTableIndex + " TAKEN: " + ts.takenPlaces + " MAX: " + ts.maxPlaces);
+                    return true;
+                }
             }
         }
         return false;
@@ -125,7 +128,8 @@ public class Sala {
 
     private int returnRandomIntInRange(int max, int min)
     {
-        return (int) (Math.random() * max + min);
+        int i = (int) (Math.random() * (max - min + 1)) + min;
+        return i;
     }
 
     protected String printSalaStatus(){
