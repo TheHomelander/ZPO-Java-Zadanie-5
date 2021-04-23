@@ -83,6 +83,8 @@ public class Restauracja {
             final int numberOfTablesRoomOne = returnRandomIntInRange(maxNumberOfTablesRoom,minNumberOfTablesRoom);
             final int numberOfTablesRoomTwo = returnRandomIntInRange(maxNumberOfTablesRoom,minNumberOfTablesRoom);
 
+            System.out.println("TODAYS NUMBER OF GUESTS: " + numberOfTodaysGuests);
+
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
             System.out.println("INITIATEROOMS FINISED");
             initiateTables();
@@ -111,11 +113,20 @@ public class Restauracja {
                 Guest tg = new Guest("", "", false);
                 tg.randomizeGuest();
                 int tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
-                System.out.println("INDEX: " + tableIndexToAssign);
-                if(sale.get(tableIndexToAssign).assignToRandomTable(tg)){
-                    currentGuests = currentGuests + 1;
+                //System.out.println("INDEX: " + tableIndexToAssign);
+                if(sale.get(tableIndexToAssign).getCurrentNumberOfGuests() < sale.get(tableIndexToAssign).getSeatsNeeded()){
+                    if(sale.get(tableIndexToAssign).assignToRandomTable(tg)) {
+                        currentGuests = currentGuests + 1;
+                    }
                 }else
-                    break;
+                {
+                    if ( tableIndexToAssign == randomizerMax ) tableIndexToAssign = randomizerMin;
+                    else
+                        tableIndexToAssign = randomizerMax;
+                        if(sale.get(tableIndexToAssign).assignToRandomTable(tg)) {
+                            currentGuests = currentGuests + 1;
+                        }
+                }
             }else
                 break;
         }

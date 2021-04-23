@@ -55,6 +55,10 @@ public class Sala {
         this.seatsNeeded = seatsNeeded;
     }
 
+    protected int getCurrentNumberOfGuests (){
+        return currentNumberOfGuests;
+    }
+
     protected List<Guest> getGuests() {
         return guests;
     }
@@ -94,7 +98,7 @@ public class Sala {
                 if(ts.addGuest(tg)) {
                     ts.takenPlaces = ts.takenPlaces + 1;
                     currentNumberOfGuests = currentNumberOfGuests + 1;
-                    System.out.println("TABLE: " + rolledTableIndex + " TAKEN: " + ts.takenPlaces + " MAX: " + ts.maxPlaces);
+
                     return true;
                 }
             }
