@@ -7,7 +7,6 @@ public class Guest {
     protected final String[] nameAvailable = {"Adam", "Ola", "Paweł", "Piotr", "Bartek", "Kamil"};
     protected final String[] surnameAvailable = {"Krzak", "Dąbrowski", "Kowal", "Kowal", "Korniszon", "Zapała"};
 
-    private boolean isVegetarian;
 
     private float bill = 0.0F;
     private static int iD = 1;
@@ -15,28 +14,20 @@ public class Guest {
     private final int success = 1;
     private final int failure = 0;
 
-    Guest(String name, String surname, boolean isVegetarian){
+    Guest(String name, String surname){
         guestID = "GUEST" + iD;
         iD = iD + 1;
         this.name = name;
         this.surname = surname;
-        this.isVegetarian = isVegetarian;
     }
 
     @Override
     public String toString() {
         return  guestID + ": " + name + " " + surname + ", " +
-                "Vegetarian: " + isVegetarian + ", " +
                 "Bill: " + bill;
     }
 
-    protected boolean isVegetarian() {
-        return isVegetarian;
-    }
 
-    protected void setVegetarian(boolean vegetarian) {
-        isVegetarian = vegetarian;
-    }
 
     protected float getBill() {
         return bill;
@@ -72,6 +63,5 @@ public class Guest {
     public void randomizeGuest() {
         name = getRandomName();
         surname = getRandomSurname();
-        isVegetarian = (returnRandomIntInRange(success,failure) == success) ;
     }
 }

@@ -88,6 +88,13 @@ public class Sala {
         boolean findTableFlag = true;
         final int minRoll = 0;
         final int maxRoll = tables.size() - 1;
+
+        int tempcounter = 0 ;
+        for(Stol ts : tables){
+            tempcounter += ts.maxPlaces;
+        }
+        System.out.println("CAPACITY: " + seatsNeeded + " MAX FROM TABLES: " + tempcounter);
+
         int rolledTableIndex;
         Stol ts;
         while(findTableFlag){
@@ -145,6 +152,11 @@ public class Sala {
                             "Room cuisine type: " + typSali + "\n" +
                             myTV.toString();
             if ( snookerTable != null ) returnString = returnString + snookerTable.toString() + "\n";
+
+            for(Stol ts : tables){
+                returnString = returnString + ts.printAvailableSeats() + "\n";
+            }
+
             return returnString;
         }
         catch (Exception e)
@@ -166,15 +178,15 @@ public class Sala {
             {
                 randomValue = returnRandomIntInRange(maxRandom, minRandom);
                 if (temporaryVariable - randomValue > 0){
-                    tables.add(new Stol(randomValue));
+                    if(i != numberOfTables - 1) tables.add(new Stol(randomValue));
+                    else
+                        tables.add(new Stol(temporaryVariable));
                     temporaryVariable = temporaryVariable - randomValue;
                 }
                 else {
                     tables.add(new Stol(temporaryVariable));
                     temporaryVariable = 0;
                 }
-
-
             }
 
             return true;

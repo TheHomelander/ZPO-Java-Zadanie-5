@@ -38,14 +38,15 @@ public class Restauracja {
         this.name = name;
     }
 
-    protected String printRestStatus(List<Sala> ls){
+    protected String printRestStatus(){
         try {
             String resultingString = "";
+
+
             for (Sala temp : sale) {
-                resultingString =   resultingString +
-                                    temp.printSalaStatus() +
-                                    "\n";
+                resultingString = resultingString + temp.printSalaStatus() ;
             }
+
             return resultingString;
         }catch (Exception e){
             System.out.println("Error occured while printing restaurant status");
@@ -87,10 +88,11 @@ public class Restauracja {
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
             System.out.println("INITIATEROOMS FINISED");
+
             initiateTables();
             System.out.println("INITIATE TABLES FINISHED");
-            assignGuestsToRandomTables(numberOfTodaysGuests);
 
+            assignGuestsToRandomTables(numberOfTodaysGuests);
             System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
 
 
@@ -110,7 +112,7 @@ public class Restauracja {
         int randomizerMax = sale.size() - 1;
         for ( int i = 0 ; i < gn ; i++) {
             if( currentGuests < maxAvailableSeats){
-                Guest tg = new Guest("", "", false);
+                Guest tg = new Guest("", "");
                 tg.randomizeGuest();
                 int tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
                 //System.out.println("INDEX: " + tableIndexToAssign);
