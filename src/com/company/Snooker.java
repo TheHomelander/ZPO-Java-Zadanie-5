@@ -4,7 +4,7 @@ public class Snooker {
     private int numberOfPlayers = 0;
     private final int maxNumberOfPlayers = 4;
 
-    private String snookerTableLabel;
+    private final String snookerTableLabel;
     private static int identificationNumber = 0;
 
     private final int success = 1;

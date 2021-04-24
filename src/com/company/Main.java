@@ -8,7 +8,6 @@ public class Main {
         wyobrazniaRestaurant.initiateRestaurant();
         System.out.println("INITIATE FINISHED");
         // notatka dla Wiktora
-        // dodać losowe dodawanie osób do stolika z bilardem
 
         // jak bd czas to jeszcze można rozdzielić Restauracja.addgueststorandomtavbles, żeby osobna metoda generowała wcześniej listę gości a następnie byli oni przydzielani
         System.out.println( wyobrazniaRestaurant.printRestStatus() );

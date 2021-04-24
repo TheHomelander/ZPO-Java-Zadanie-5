@@ -87,16 +87,16 @@ public class Restauracja {
             System.out.println("TODAYS NUMBER OF GUESTS: " + numberOfTodaysGuests);
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
-            System.out.println("INITIATEROOMS FINISED");
+            //System.out.println("INITIATEROOMS FINISED");
 
             initiateTVs();
 
             initiateTables();
-            System.out.println("INITIATE TABLES FINISHED");
+            //System.out.println("INITIATE TABLES FINISHED");
 
             assignGuestsToRandomTables(numberOfTodaysGuests);
             //assignGuestsToRandomTables(29);
-            System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
+           // System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
 
 
 
@@ -122,6 +122,7 @@ public class Restauracja {
         for ( int i = 0 ; i < gn ; i++) {
 
             if( currentGuests < maxAvailableSeats){
+
                 Guest tg = new Guest("", "");
                 tg.randomizeGuest();
 
@@ -174,7 +175,7 @@ public class Restauracja {
 
     private void initiateRooms(int roomOneCapacity, int roomTwoCapacity, int numberOfTablesRoomOne, int numberOfTablesRoomTwo) {
         final int firstRoomType = returnRandomIntInRange(success,failure);
-        System.out.println("InitiateRooms: " + firstRoomType);
+        //System.out.println("InitiateRooms: " + firstRoomType);
         if( firstRoomType == success ){
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomTwoCapacity, numberOfTablesRoomTwo));

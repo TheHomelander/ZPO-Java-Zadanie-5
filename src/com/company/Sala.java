@@ -170,7 +170,6 @@ public class Sala {
             int minRandom = 0;
             int maxRandom = numberOfTables - 1 ;
 
-            System.out.println("###### seatsneeded: " + seatsNeeded + "######");
 
             for(int j = 0 ; j < seatsNeeded ; j++){
                 randomValue = returnRandomIntInRange(maxRandom, minRandom);
