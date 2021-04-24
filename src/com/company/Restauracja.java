@@ -18,6 +18,7 @@ public class Restauracja {
         this.name = name;
     }
 
+
     protected List<Sala> getSale() {
         return sale;
     }
@@ -38,30 +39,25 @@ public class Restauracja {
         this.name = name;
     }
 
-    protected String printRestStatus(){
-        try {
+
+    protected String printRestStatus()
+    {
+        try
+        {
             String resultingString = "";
 
 
-            for (Sala temp : sale) {
+            for (Sala temp : sale)
+            {
                 resultingString = resultingString + temp.printSalaStatus() ;
             }
 
             return resultingString;
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             System.out.println("Error occured while printing restaurant status");
         }
         return null;
-    }
-
-    protected int addSala(List<Sala> ls, Sala sObj){
-        try{
-            ls.add(sObj);
-            return success;
-        }catch (Exception e){
-            System.out.println("Error adding Sala");
-        }
-        return failure;
     }
 
     private int returnRandomIntInRange(int max, int min)
@@ -70,8 +66,10 @@ public class Restauracja {
         return i;
     }
 
-    protected int initiateRestaurant(){
-        try{
+    protected int initiateRestaurant()
+    {
+        try
+        {
             final int roomOneCapacity = 18;
             final int roomTwoCapacity = 12;
 
@@ -87,41 +85,35 @@ public class Restauracja {
             System.out.println("TODAYS NUMBER OF GUESTS: " + numberOfTodaysGuests);
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
-            //System.out.println("INITIATEROOMS FINISED");
 
             initiateTVs();
 
             initiateTables();
-            //System.out.println("INITIATE TABLES FINISHED");
 
             assignGuestsToRandomTables(numberOfTodaysGuests);
-            //assignGuestsToRandomTables(29);
-           // System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
 
-
-
-
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             System.out.println("Error occured while initiating the restaurant" + e);
         }
-
-
 
         return failure;
     }
 
 
 
-    private void assignGuestsToRandomTables(int gn) {
+    private void assignGuestsToRandomTables(int todaysGuests)
+    {
         final int randomizerMin = 0;
         final int randomizerMax = sale.size() - 1;
         int tableIndexToAssign;
         boolean ifAssignToSnookerTable;
         Sala ts;
 
-        for ( int i = 0 ; i < gn ; i++) {
-
-            if( currentGuests < maxAvailableSeats){
+        for ( int i = 0 ; i < todaysGuests ; i++)
+        {
+            if( currentGuests < maxAvailableSeats)
+            {
 
                 Guest tg = new Guest("", "");
                 tg.randomizeGuest();
@@ -131,8 +123,10 @@ public class Restauracja {
 
                 ts = sale.get(tableIndexToAssign);
 
-                if( ts.getSnookerTable() != null) {
-                    if ((ts.getSnookerTable().getNumberOfPlayers() < ts.getSnookerTable().getMaxNumberOfPlayers()) && ifAssignToSnookerTable) {
+                if( ts.getSnookerTable() != null)
+                {
+                    if ((ts.getSnookerTable().getNumberOfPlayers() < ts.getSnookerTable().getMaxNumberOfPlayers()) && ifAssignToSnookerTable)
+                    {
                         ts.getSnookerTable().addPlayer();
                         continue;
                     }
@@ -140,46 +134,52 @@ public class Restauracja {
 
                 if(ts.assignToRandomTable(tg))
                 {
-
                          currentGuests = currentGuests + 1;
-
                 }
                 else
                 {
                     if ( tableIndexToAssign == randomizerMax ) tableIndexToAssign = randomizerMin;
                     else
                         tableIndexToAssign = randomizerMax;
-                        if(ts.assignToRandomTable(tg))
-                        {
-                            currentGuests = currentGuests + 1;
-                        }
+                    ts = sale.get(tableIndexToAssign);
+                    if(ts.assignToRandomTable(tg))
+                    {
+                        currentGuests = currentGuests + 1;
+                    }
                 }
             }else
                 break;
         }
     }
 
-    private void initiateTVs() {
-        for(Sala ts : sale){
+    private void initiateTVs()
+    {
+        for(Sala ts : sale)
+        {
             TV ttv = new TV(" ", " ");
             ttv.setRandomParameters();
             ts.setMyTV(ttv);
         }
     }
 
-    private void initiateTables() {
-        for(Sala tempSala : sale){
+    private void initiateTables()
+    {
+        for(Sala tempSala : sale)
+        {
             tempSala.makeTables();
         }
     }
 
-    private void initiateRooms(int roomOneCapacity, int roomTwoCapacity, int numberOfTablesRoomOne, int numberOfTablesRoomTwo) {
+    private void initiateRooms(int roomOneCapacity, int roomTwoCapacity, int numberOfTablesRoomOne, int numberOfTablesRoomTwo)
+    {
         final int firstRoomType = returnRandomIntInRange(success,failure);
-        //System.out.println("InitiateRooms: " + firstRoomType);
-        if( firstRoomType == success ){
+
+        if( firstRoomType == success )
+        {
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomTwoCapacity, numberOfTablesRoomTwo));
-        }else{
+        }else
+        {
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomTwoCapacity, numberOfTablesRoomTwo));
         }
@@ -187,4 +187,33 @@ public class Restauracja {
 
     }
 
+
+    //  ======  TO DELETE ======
+    protected void printControlSum()
+    {
+        int saleGuests = 0;
+        int saleMaxGuests = 0;
+        int tableGuests = 0;
+        int tableindex = 0;
+        for(Sala ts: sale){
+            saleGuests += ts.getCurrentNumberOfGuests();
+            saleMaxGuests = ts.getSeatsNeeded();
+
+            for(Stol tempSt : ts.getTables()){
+                tableGuests += tempSt.takenPlaces;
+            }
+            if( ts.getSnookerTable() != null) tableGuests += ts.getSnookerTable().getNumberOfPlayers();
+            System.out.println("========= STOL " + tableindex + " =========\n" +
+                               "MAX GUESTS SALE: " + saleMaxGuests +
+                               "\nTABLE CURRENT GUESTS: " + tableGuests + "\n" +
+                                "========= END STOL " + tableindex + " =========\n"
+                                );
+             saleGuests = 0;
+             saleMaxGuests = 0;
+             tableGuests = 0;
+             tableindex = 0;
+            tableindex += 1;
+        }
+
+    }
 }

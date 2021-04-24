@@ -11,6 +11,7 @@ public class Main {
 
         // jak bd czas to jeszcze można rozdzielić Restauracja.addgueststorandomtavbles, żeby osobna metoda generowała wcześniej listę gości a następnie byli oni przydzielani
         System.out.println( wyobrazniaRestaurant.printRestStatus() );
+        wyobrazniaRestaurant.printControlSum();
 
     }
 }

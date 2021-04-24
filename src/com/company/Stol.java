@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Stol {
 
-    protected String tableLabel;
+    private final String tableLabel;
     private List<Krzeslo> chairs = new ArrayList<>();
+
     private static int iD = 0;
-    protected int maxPlaces;
+    protected  final int maxPlaces;
     protected int takenPlaces = 0;
 
     Stol(int maxPLaces)
@@ -34,7 +35,7 @@ public class Stol {
     }
 
     protected String printAvailableSeats(){
-        return tableLabel + ":\n" +
+        return  tableLabel + ":\n" +
                 "All Seats: " + maxPlaces + "\n" +
                 "Taken Seats: " + takenPlaces + "\n";
     }

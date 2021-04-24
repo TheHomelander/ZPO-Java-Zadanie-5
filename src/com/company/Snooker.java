@@ -7,9 +7,6 @@ public class Snooker {
     private final String snookerTableLabel;
     private static int identificationNumber = 0;
 
-    private final int success = 1;
-    private final int failure = 0;
-
     Snooker(){
         snookerTableLabel = "SNOOKER" + identificationNumber;
         identificationNumber = identificationNumber + 1;
@@ -21,6 +18,8 @@ public class Snooker {
                 "NUMBER OF PLAYERS: " + numberOfPlayers + "\n";
     }
 
+
+
     protected int getNumberOfPlayers() {
         return numberOfPlayers;
     }
@@ -31,17 +30,6 @@ public class Snooker {
 
     protected int getMaxNumberOfPlayers(){
         return maxNumberOfPlayers;
-    }
-
-
-    protected int removePlayer(){
-        if(numberOfPlayers - 1 < 0){
-            return failure;
-        }else
-        {
-            numberOfPlayers = numberOfPlayers - 1;
-            return success;
-        }
     }
 
     protected boolean addPlayer(){
