@@ -89,10 +89,13 @@ public class Restauracja {
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
             System.out.println("INITIATEROOMS FINISED");
 
+            initiateTVs();
+
             initiateTables();
             System.out.println("INITIATE TABLES FINISHED");
 
             assignGuestsToRandomTables(numberOfTodaysGuests);
+            //assignGuestsToRandomTables(29);
             System.out.println("ASSIGNGUESTSTORANDOMTABLES FINISHED");
 
 
@@ -107,30 +110,59 @@ public class Restauracja {
         return failure;
     }
 
+
+
     private void assignGuestsToRandomTables(int gn) {
-        int randomizerMin = 0;
-        int randomizerMax = sale.size() - 1;
+        final int randomizerMin = 0;
+        final int randomizerMax = sale.size() - 1;
+        int tableIndexToAssign;
+        boolean ifAssignToSnookerTable;
+        Sala ts;
+
         for ( int i = 0 ; i < gn ; i++) {
+
             if( currentGuests < maxAvailableSeats){
                 Guest tg = new Guest("", "");
                 tg.randomizeGuest();
-                int tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
-                //System.out.println("INDEX: " + tableIndexToAssign);
-                if(sale.get(tableIndexToAssign).getCurrentNumberOfGuests() < sale.get(tableIndexToAssign).getSeatsNeeded()){
-                    if(sale.get(tableIndexToAssign).assignToRandomTable(tg)) {
-                        currentGuests = currentGuests + 1;
+
+                tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
+                ifAssignToSnookerTable = (returnRandomIntInRange(success, failure) == success );
+
+                ts = sale.get(tableIndexToAssign);
+
+                if( ts.getSnookerTable() != null) {
+                    if ((ts.getSnookerTable().getNumberOfPlayers() < ts.getSnookerTable().getMaxNumberOfPlayers()) && ifAssignToSnookerTable) {
+                        ts.getSnookerTable().addPlayer();
+                        continue;
                     }
-                }else
+                }
+
+                if(ts.assignToRandomTable(tg))
+                {
+
+                         currentGuests = currentGuests + 1;
+
+                }
+                else
                 {
                     if ( tableIndexToAssign == randomizerMax ) tableIndexToAssign = randomizerMin;
                     else
                         tableIndexToAssign = randomizerMax;
-                        if(sale.get(tableIndexToAssign).assignToRandomTable(tg)) {
+                        if(ts.assignToRandomTable(tg))
+                        {
                             currentGuests = currentGuests + 1;
                         }
                 }
             }else
                 break;
+        }
+    }
+
+    private void initiateTVs() {
+        for(Sala ts : sale){
+            TV ttv = new TV(" ", " ");
+            ttv.setRandomParameters();
+            ts.setMyTV(ttv);
         }
     }
 
@@ -149,11 +181,6 @@ public class Restauracja {
         }else{
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomTwoCapacity, numberOfTablesRoomTwo));
-        }
-        for(Sala ts : sale){
-            TV ttv = new TV(" ", " ");
-            ttv.setRandomParameters();
-            ts.setMyTV(ttv);
         }
 
 

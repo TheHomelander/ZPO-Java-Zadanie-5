@@ -85,28 +85,24 @@ public class Sala {
 
 
     public boolean assignToRandomTable(Guest tg) {
-        boolean findTableFlag = true;
-        final int minRoll = 0;
-        final int maxRoll = tables.size() - 1;
+        if( currentNumberOfGuests < seatsNeeded ) {
+            boolean findTableFlag = true;
+            final int minRoll = 0;
+            final int maxRoll = tables.size() - 1;
 
-        int tempcounter = 0 ;
-        for(Stol ts : tables){
-            tempcounter += ts.maxPlaces;
-        }
-        System.out.println("CAPACITY: " + seatsNeeded + " MAX FROM TABLES: " + tempcounter);
+            int rolledTableIndex;
+            Stol ts;
+            while (findTableFlag) {
+                rolledTableIndex = returnRandomIntInRange(maxRoll, minRoll);
+                ts = tables.get(rolledTableIndex);
 
-        int rolledTableIndex;
-        Stol ts;
-        while(findTableFlag){
-            rolledTableIndex = returnRandomIntInRange(maxRoll, minRoll);
-            ts = tables.get(rolledTableIndex);
+                if (ts.takenPlaces < ts.maxPlaces) {
+                    if (ts.addGuest(tg)) {
+                        ts.takenPlaces = ts.takenPlaces + 1;
+                        currentNumberOfGuests = currentNumberOfGuests + 1;
 
-            if( ts.takenPlaces < ts.maxPlaces ){
-                if(ts.addGuest(tg)) {
-                    ts.takenPlaces = ts.takenPlaces + 1;
-                    currentNumberOfGuests = currentNumberOfGuests + 1;
-
-                    return true;
+                        return true;
+                    }
                 }
             }
         }
@@ -169,24 +165,20 @@ public class Sala {
 
     public boolean makeTables() {
         try {
-            int temporaryVariable = seatsNeeded;
+            int[] tableCapacityArray = new int[numberOfTables];
             int randomValue = 0;
-            int minRandom = 1;
-            int maxRandom = seatsNeeded / 2;
+            int minRandom = 0;
+            int maxRandom = numberOfTables - 1 ;
 
+            System.out.println("###### seatsneeded: " + seatsNeeded + "######");
+
+            for(int j = 0 ; j < seatsNeeded ; j++){
+                randomValue = returnRandomIntInRange(maxRandom, minRandom);
+                tableCapacityArray[randomValue] = tableCapacityArray[randomValue] + 1;
+            }
             for (int i = 0; i < numberOfTables ; i++)
             {
-                randomValue = returnRandomIntInRange(maxRandom, minRandom);
-                if (temporaryVariable - randomValue > 0){
-                    if(i != numberOfTables - 1) tables.add(new Stol(randomValue));
-                    else
-                        tables.add(new Stol(temporaryVariable));
-                    temporaryVariable = temporaryVariable - randomValue;
-                }
-                else {
-                    tables.add(new Stol(temporaryVariable));
-                    temporaryVariable = 0;
-                }
+                tables.add(new Stol(tableCapacityArray[i]));
             }
 
             return true;

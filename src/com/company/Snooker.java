@@ -34,17 +34,6 @@ public class Snooker {
     }
 
 
-
-    protected int addPlayers(int newPLayers) {
-        for(int i = 0 ; i < newPLayers ; i++) {
-            if (numberOfPlayers + 1 > maxNumberOfPlayers) {
-                return failure;
-            } else {
-                numberOfPlayers = numberOfPlayers + 1;
-            }
-        }
-        return success;
-    }
     protected int removePlayer(){
         if(numberOfPlayers - 1 < 0){
             return failure;
@@ -53,6 +42,14 @@ public class Snooker {
             numberOfPlayers = numberOfPlayers - 1;
             return success;
         }
+    }
+
+    protected boolean addPlayer(){
+        if( numberOfPlayers < maxNumberOfPlayers){
+            numberOfPlayers = numberOfPlayers + 1;
+            return true;
+        }else
+            return false;
     }
 
 }
