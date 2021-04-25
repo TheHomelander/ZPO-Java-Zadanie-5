@@ -158,6 +158,7 @@ public class Sala {
                             myTV.toString() + "\n";
 
             if ( snookerTable != null ) returnString = returnString + snookerTable.toString() + "\n";
+
             for(Stol ts : tables)
             {
                 returnString = returnString + ts.printAvailableSeats() + "\n";
@@ -167,7 +168,7 @@ public class Sala {
         }
         catch (Exception e)
         {
-            System.out.println("Error in printing status " + e);
+            System.out.println("Error in printing room status " + e);
         }
         return null;
     }

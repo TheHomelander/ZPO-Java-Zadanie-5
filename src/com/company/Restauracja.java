@@ -188,32 +188,4 @@ public class Restauracja {
     }
 
 
-    //  ======  TO DELETE ======
-    protected void printControlSum()
-    {
-        int saleGuests = 0;
-        int saleMaxGuests = 0;
-        int tableGuests = 0;
-        int tableindex = 0;
-        for(Sala ts: sale){
-            saleGuests += ts.getCurrentNumberOfGuests();
-            saleMaxGuests = ts.getSeatsNeeded();
-
-            for(Stol tempSt : ts.getTables()){
-                tableGuests += tempSt.takenPlaces;
-            }
-            if( ts.getSnookerTable() != null) tableGuests += ts.getSnookerTable().getNumberOfPlayers();
-            System.out.println("========= STOL " + tableindex + " =========\n" +
-                               "MAX GUESTS SALE: " + saleMaxGuests +
-                               "\nTABLE CURRENT GUESTS: " + tableGuests + "\n" +
-                                "========= END STOL " + tableindex + " =========\n"
-                                );
-             saleGuests = 0;
-             saleMaxGuests = 0;
-             tableGuests = 0;
-             tableindex = 0;
-            tableindex += 1;
-        }
-
-    }
 }
