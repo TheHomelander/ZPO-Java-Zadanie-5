@@ -40,7 +40,7 @@ public class Stol {
                 "Taken Seats: " + takenPlaces + "\n";
     }
 
-    public boolean addGuest(Guest tg) {
+    protected boolean addGuest(Guest tg) {
         for(Krzeslo tk : chairs){
             if(tk.sittingGuest == null){
                 tk.sittingGuest = tg;

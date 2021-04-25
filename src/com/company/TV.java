@@ -17,6 +17,12 @@ public class TV {
         this.showPlaying = showPlaying;
     }
 
+    TV(){
+        label = "TV" + iD;
+        iD = iD + 1;
+        setRandomParameters();
+    }
+
     @Override
     public String toString() {
         return label + ":\n" +
@@ -54,7 +60,7 @@ public class TV {
         return availableChannels[returnRandomIntInRange(availableChannels.length - 1, minimumRandomInt)];
     }
 
-    public boolean setRandomParameters() {
+    protected boolean setRandomParameters() {
         channelName = getRandomChannel();
         showPlaying = getRandomShow();
         if( channelName != null && showPlaying != null)return true;

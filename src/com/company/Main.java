@@ -6,8 +6,6 @@ public class Main {
 
         Restauracja wyobrazniaRestaurant = new Restauracja("Wyobraźnia");
         wyobrazniaRestaurant.initiateRestaurant();
-        System.out.println("INITIATE FINISHED");
-
         System.out.println( wyobrazniaRestaurant.printRestStatus() );
 
 

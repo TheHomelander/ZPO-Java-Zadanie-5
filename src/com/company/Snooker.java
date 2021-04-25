@@ -8,7 +8,7 @@ public class Snooker {
     private static int identificationNumber = 0;
 
     Snooker(){
-        snookerTableLabel = "SNOOKER" + identificationNumber;
+        snookerTableLabel = "SNOOKERTABLE" + identificationNumber;
         identificationNumber = identificationNumber + 1;
     }
 

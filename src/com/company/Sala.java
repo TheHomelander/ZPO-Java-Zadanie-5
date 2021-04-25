@@ -82,7 +82,7 @@ public class Sala {
 
 
 
-    public boolean assignToRandomTable(Guest tg)
+    protected boolean assignToRandomTable(Guest tg)
     {
         if( currentNumberOfGuests < seatsNeeded )
         {
@@ -153,7 +153,7 @@ public class Sala {
             String returnString = "";
 
             returnString = "====== " + salaID + ": ======\n" +
-                            "Current number of guests: " + currentNumberOfGuests + "\n" +
+                            "Current number of sitting guests: " + currentNumberOfGuests + "\n" +
                             "Room cuisine type: " + typSali + "\n\n" +
                             myTV.toString() + "\n";
 
@@ -173,7 +173,7 @@ public class Sala {
         return null;
     }
 
-    public boolean makeTables() {
+    protected boolean makeTables() {
         try
         {
             int[] tableCapacityArray = new int[numberOfTables];

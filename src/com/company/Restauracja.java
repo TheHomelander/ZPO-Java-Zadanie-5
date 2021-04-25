@@ -81,8 +81,7 @@ public class Restauracja {
             final int minNumberOfTablesRoom = 3;
             final int numberOfTablesRoomOne = returnRandomIntInRange(maxNumberOfTablesRoom,minNumberOfTablesRoom);
             final int numberOfTablesRoomTwo = returnRandomIntInRange(maxNumberOfTablesRoom,minNumberOfTablesRoom);
-
-            System.out.println("TODAYS NUMBER OF GUESTS: " + numberOfTodaysGuests);
+            //System.out.println("TODAYS NUMBER OF GUESTS: " + numberOfTodaysGuests);
 
             initiateRooms(roomOneCapacity,roomTwoCapacity, numberOfTablesRoomOne,numberOfTablesRoomTwo);
 
@@ -115,8 +114,7 @@ public class Restauracja {
             if( currentGuests < maxAvailableSeats)
             {
 
-                Guest tg = new Guest("", "");
-                tg.randomizeGuest();
+                Guest tg = new Guest();
 
                 tableIndexToAssign = returnRandomIntInRange(randomizerMax,randomizerMin);
                 ifAssignToSnookerTable = (returnRandomIntInRange(success, failure) == success );
@@ -156,8 +154,7 @@ public class Restauracja {
     {
         for(Sala ts : sale)
         {
-            TV ttv = new TV(" ", " ");
-            ttv.setRandomParameters();
+            TV ttv = new TV();
             ts.setMyTV(ttv);
         }
     }
@@ -183,7 +180,6 @@ public class Restauracja {
             sale.add(new Sala(Sala.TypSali.CARNIVOROUS, roomOneCapacity, numberOfTablesRoomOne));
             sale.add(new Sala(Sala.TypSali.VEGETARIAN, roomTwoCapacity, numberOfTablesRoomTwo));
         }
-
 
     }
 

@@ -1,9 +1,9 @@
 package com.company;
 
 public class Guest {
-    private String name;
-    private String surname;
-    private String guestID;
+    private final String name;
+    private final String surname;
+    private final String guestID;
     protected final String[] nameAvailable = {"Adam", "Ola", "Paweł", "Piotr", "Bartek", "Kamil"};
     protected final String[] surnameAvailable = {"Krzak", "Dąbrowski", "Kowal", "Kowal", "Korniszon", "Zapała"};
 
@@ -21,6 +21,12 @@ public class Guest {
         this.surname = surname;
     }
 
+    Guest(){
+        guestID = "GUEST" + iD;
+        iD = iD + 1;
+        this.name = getRandomName();
+        this.surname = getRandomSurname();
+    }
 
     @Override
     public String toString() {
@@ -61,8 +67,5 @@ public class Guest {
         return surnameAvailable[returnRandomIntInRange(surnameAvailable.length - 1, minimumRandomInt)];
     }
 
-    public void randomizeGuest() {
-        name = getRandomName();
-        surname = getRandomSurname();
-    }
+
 }
