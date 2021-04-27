@@ -32,6 +32,7 @@ public class Snooker {
         return maxNumberOfPlayers;
     }
 
+
     protected boolean addPlayer(){
         if( numberOfPlayers < maxNumberOfPlayers){
             numberOfPlayers = numberOfPlayers + 1;

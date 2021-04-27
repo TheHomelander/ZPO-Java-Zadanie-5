@@ -8,6 +8,5 @@ public class Main {
         wyobrazniaRestaurant.initiateRestaurant();
         System.out.println( wyobrazniaRestaurant.printRestStatus() );
 
-
     }
 }

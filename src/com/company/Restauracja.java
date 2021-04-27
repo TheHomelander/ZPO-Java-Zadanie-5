@@ -14,7 +14,7 @@ public class Restauracja {
 
 
 
-    Restauracja(String name){
+    public Restauracja(String name){
         this.name = name;
     }
 
@@ -183,5 +183,12 @@ public class Restauracja {
 
     }
 
+    public static void main(String[] args) {
+
+        Restauracja wyobrazniaRestaurant = new Restauracja("Wyobraźnia");
+        wyobrazniaRestaurant.initiateRestaurant();
+        System.out.println( wyobrazniaRestaurant.printRestStatus() );
+
+    }
 
 }
