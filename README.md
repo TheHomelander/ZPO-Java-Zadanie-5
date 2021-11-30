@@ -1,0 +1,4 @@
+# ZPO-Java-Zadanie-5
+Restauracja Wyobraźnia składa się z dwóch sal: dla wegetarian i mięsożerców. Każda sala może pomieścić określoną liczbę gości i wyposażony jest w stoły, krzesła oraz telewizor. Dodatkowo sala dla wegetarian posiada stół bilardowy. Utwórz model restauracji i wszystkie jego komponenty. Utwórz przykładowy stan pomieszczeń (sala 1 - 18 miejsc, sala 2 - 12 miejsc). Dodaj gości losowo z każdego pokoju. Wyświetl na konsoli informacje prezentujące aktualny stan restauracji (ilość gości w każdej sali, ilość wolnych stolików, zajętość stołu bilardowego, nazwa programu aktualnie nadawanego w TV, itp.).
+Podpowiedź: utwórz klasy: Restauracja, Sala, Stół, Krzesło, TV, Snooker, Gość
+Podpowiedź 2: Być może rozwiązanie może być bardziej uniwersalne gdyby także utworzyć odpowiednie interfejsy.
